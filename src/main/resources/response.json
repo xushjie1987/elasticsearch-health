@@ -1,0 +1,60 @@
+{
+    "took": 2,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "failed": 0
+    },
+    "hits": {
+        "total": 2,
+        "max_score": 0.0,
+        "hits": [
+        ]
+    },
+    "aggregations": {
+        "nested_nodes": {
+            "doc_count": 2,
+            "nodes_time": {
+                "buckets": [
+                    {
+                        "key_as_string": "2016-07-10_16:42",
+                        "key": 1468140120000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 7.56
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-10_16:43",
+                        "key": 1468140180000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 3.86
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

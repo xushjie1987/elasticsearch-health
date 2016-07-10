@@ -1,0 +1,86 @@
+{
+    "template": "health-*",
+    "settings": {
+        "number_of_replicas": 0,
+        "number_of_shards": 1
+    },
+    "mappings": {
+        "stats": {
+            "_source": {
+                "enabled": true
+            },
+            "_all": {
+                "enabled": false
+            },
+            "_timestamp": {
+                "enabled": true
+            },
+            "_ttl": {
+                "enabled": true
+            },
+            "properties": {
+                "cluster_name": {
+                    "include_in_all": false,
+                    "index": "not_analyzed",
+                    "store": true,
+                    "type": "string",
+                    "doc_values": true
+                },
+                "nodes": {
+                    "type": "nested",
+                    "dynamic": true,
+                    "include_in_all": false,
+                    "properties": {
+                        "timestamp": {
+                            "include_in_all": false,
+                            "format": "epoch_millis||strict_date_optional_time||yyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+                            "index": "not_analyzed",
+                            "store": true,
+                            "type": "date",
+                            "doc_values": true
+                        },
+                        "name": {
+                            "include_in_all": false,
+                            "index": "not_analyzed",
+                            "store": true,
+                            "type": "string",
+                            "doc_values": true
+                        },
+                        "host": {
+                            "include_in_all": false,
+                            "index": "not_analyzed",
+                            "store": true,
+                            "type": "string",
+                            "doc_values": true
+                        },
+                        "os": {
+                            "type": "object",
+                            "dynamic": true,
+                            "enabled": true,
+                            "include_in_all": false,
+                            "properties": {
+                                "timestamp": {
+                                    "include_in_all": false,
+                                    "format": "epoch_millis||strict_date_optional_time||yyy-MM-dd HH:mm:ss||yyyy-MM-dd",
+                                    "index": "not_analyzed",
+                                    "store": true,
+                                    "type": "date",
+                                    "doc_values": true
+                                },
+                                "load_average": {
+                                    "type": "double",
+                                    "include_in_all": false,
+                                    "index": "not_analyzed",
+                                    "store": true,
+                                    "doc_values": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "alias": {
+    }
+}

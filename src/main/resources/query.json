@@ -1,0 +1,49 @@
+{
+    "from": 0,
+    "size": 0,
+    "query": {
+        "nested": {
+            "path": "nodes",
+            "score_mode": "avg",
+            "query": {
+                "range": {
+                    "nodes.timestamp": {
+                        "gte": "now-2m",
+                        "lte": "now"
+                    }
+                }
+            }
+        }
+    },
+    "aggregations": {
+        "nested_nodes": {
+            "nested": {
+                "path": "nodes"
+            },
+            "aggregations": {
+                "nodes_time": {
+                    "date_histogram": {
+                        "field": "nodes.timestamp",
+                        "interval": "minute",
+                        "format": "yyyy-MM-dd_HH:mm",
+                        "time_zone": "+08:00"
+                    },
+                    "aggregations": {
+                        "nodes_terms": {
+                            "terms": {
+                                "field": "nodes.name"
+                            },
+                            "aggregations": {
+                                "max_os_load": {
+                                    "max": {
+                                        "field": "nodes.os.load_average"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
