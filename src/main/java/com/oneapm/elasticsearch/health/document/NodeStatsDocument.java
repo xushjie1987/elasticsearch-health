@@ -48,6 +48,38 @@ public class NodeStatsDocument {
         
         private Double load_average;
         
+        private Mem    mem;
+        
+        private Swap   swap;
+        
+        @Getter
+        @Setter
+        public static class Mem {
+            
+            private Long   total_in_bytes;
+            
+            private Long   free_in_bytes;
+            
+            private Long   used_in_bytes;
+            
+            private Double free_percent;
+            
+            private Double used_percent;
+            
+        }
+        
+        @Getter
+        @Setter
+        public static class Swap {
+            
+            private Long total_in_bytes;
+            
+            private Long free_in_bytes;
+            
+            private Long used_in_bytes;
+            
+        }
+        
     }
     
     private Nodes[] nodes;

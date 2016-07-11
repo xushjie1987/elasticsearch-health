@@ -28,6 +28,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.InternalHistogram;
@@ -113,9 +114,18 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
                  response.toString());
     }
     
+    /**
+     * ClassName: OSStats <br/>
+     * Function: <br/>
+     * date: <br/>
+     *
+     * @author xushjie
+     * @version ElasticsearchStorage
+     * @since JDK 1.8
+     */
     @Getter
     @Setter
-    public static class OSLoads {
+    public static class OSStats {
         
         private Set<String>               nodeSet     = new HashSet<String>();
         
@@ -135,15 +145,15 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
         }
         
         /**
-         * putLoad: <br/>
+         * putStats: <br/>
          * 
          * @author xushjie
          * @param node
          * @param load
          * @since JDK 1.8
          */
-        public void putLoad(String node,
-                            double load) {
+        public void putStats(String node,
+                             double load) {
             if (!StringUtils.isBlank(node)) {
                 if (!nodeSet.contains(node)) {
                     nodeSet.add(node);
@@ -234,10 +244,9 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
      * @return
      * @since JDK 1.8
      */
-    @SuppressWarnings("unchecked")
-    public Object[][] requestOSStats(String gte,
-                                     String lte,
-                                     DateHistogramInterval interval) {
+    public Object[][][] requestOSStats(String gte,
+                                       String lte,
+                                       DateHistogramInterval interval) {
         //
         SearchRequestBuilder request = client.prepareSearch(index)
                                              .setTypes(type)
@@ -253,17 +262,105 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
                                                                                 .subAggregation(AggregationBuilders.dateHistogram("nodes_time")
                                                                                                                    .field("nodes.timestamp")
                                                                                                                    .interval(interval)
-                                                                                                                   .format("yyyy-MM-dd_HH:mm")
+                                                                                                                   .format("HH:mm_yyyy-MM-dd")
                                                                                                                    .timeZone("+08:00")
                                                                                                                    .subAggregation(AggregationBuilders.terms("nodes_terms")
                                                                                                                                                       .field("nodes.name")
                                                                                                                                                       .subAggregation(AggregationBuilders.max("max_os_load")
-                                                                                                                                                                                         .field("nodes.os.load_average")))));
+                                                                                                                                                                                         .field("nodes.os.load_average"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_mem_total")
+                                                                                                                                                                                         .field("nodes.os.mem.total_in_bytes"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_mem_free")
+                                                                                                                                                                                         .field("nodes.os.mem.free_in_bytes"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_mem_used")
+                                                                                                                                                                                         .field("nodes.os.mem.used_in_bytes"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_mem_fp")
+                                                                                                                                                                                         .field("nodes.os.mem.free_percent"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_mem_up")
+                                                                                                                                                                                         .field("nodes.os.mem.used_percent"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_swap_total")
+                                                                                                                                                                                         .field("nodes.os.swap.total_in_bytes"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_swap_free")
+                                                                                                                                                                                         .field("nodes.os.swap.free_in_bytes"))
+                                                                                                                                                      .subAggregation(AggregationBuilders.max("max_os_swap_used")
+                                                                                                                                                                                         .field("nodes.os.swap.used_in_bytes")))));
         log.info("{}",
                  request.toString());
         SearchResponse response = request.get();
         //
-        OSLoads loads = new OSLoads();
+        Object[][][] stats = new Object[9][][];
+        stats[0] = getStats(response,
+                            StatsType.LOADS).toVectors();
+        stats[1] = getStats(response,
+                            StatsType.MEM_TOTAL).toVectors();
+        stats[2] = getStats(response,
+                            StatsType.MEM_USED).toVectors();
+        stats[3] = getStats(response,
+                            StatsType.MEM_FREE).toVectors();
+        stats[4] = getStats(response,
+                            StatsType.MEM_FP).toVectors();
+        stats[5] = getStats(response,
+                            StatsType.MEM_UP).toVectors();
+        stats[6] = getStats(response,
+                            StatsType.SWAP_TOTAL).toVectors();
+        stats[7] = getStats(response,
+                            StatsType.SWAP_USED).toVectors();
+        stats[8] = getStats(response,
+                            StatsType.SWAP_FREE).toVectors();
+        //
+        return stats;
+    }
+    
+    /**
+     * ClassName: StatsType <br/>
+     * Function: <br/>
+     * date: <br/>
+     *
+     * @author xushjie
+     * @version ElasticsearchStorage
+     * @since JDK 1.8
+     */
+    public static enum StatsType {
+        LOADS("max_os_load", "nodes.os.load_average"),
+        MEM_TOTAL("max_os_mem_total", "nodes.os.mem.total_in_bytes"),
+        MEM_USED("max_os_mem_used", "nodes.os.mem.used_in_bytes"),
+        MEM_FREE("max_os_mem_free", "nodes.os.mem.free_in_bytes"),
+        MEM_FP("max_os_mem_fp", "nodes.os.mem.free_percent"),
+        MEM_UP("max_os_mem_up", "nodes.os.mem.used_percent"),
+        SWAP_TOTAL("max_os_swap_total", "nodes.os.swap.total_in_bytes"),
+        SWAP_USED("max_os_swap_used", "nodes.os.swap.used_in_bytes"),
+        SWAP_FREE("max_os_swap_free", "nodes.os.swap.free_in_bytes");
+        public String aggregationName;
+        public String field;
+        
+        /**
+         * Creates a new instance of StatsType.
+         * 
+         * @param aggregationName
+         * @param field
+         */
+        private StatsType(String aggregationName,
+                          String field) {
+            this.aggregationName = aggregationName;
+            this.field = field;
+        }
+        
+    }
+    
+    /**
+     * getStats: <br/>
+     * 
+     * @author xushjie
+     * @param response
+     * @param type
+     * @return
+     * @since JDK 1.8
+     */
+    @SuppressWarnings("unchecked")
+    private OSStats getStats(SearchResponse response,
+                             StatsType type) {
+        //
+        OSStats stats = new OSStats();
         response.getAggregations()
                 .forEach(a -> {
                     InternalNested ai = (InternalNested) a;
@@ -273,27 +370,26 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
                           hi.getBuckets()
                             .forEach(hb -> {
                                 // date
-                                loads.putMap();
-                                loads.putDate(hb.getKeyAsString());
+                                stats.putMap();
+                                stats.putDate(hb.getKeyAsString());
                                 hb.getAggregations()
                                   .forEach(t -> {
                                       StringTerms st = (StringTerms) t;
                                       st.getBuckets()
                                         .forEach(tb -> {
-                                            tb.getAggregations()
-                                              .forEach(m -> {
-                                                  InternalMax mi = (InternalMax) m;
-                                                  // os_load
-                                                  loads.putLoad(tb.getKeyAsString(),
-                                                                mi.getValue());
-                                              });
+                                            Aggregation m = tb.getAggregations()
+                                                              .get(type.aggregationName);
+                                            InternalMax mi = (InternalMax) m;
+                                            // max_data
+                                            stats.putStats(tb.getKeyAsString(),
+                                                           mi.getValue());
                                         });
                                   });
                             });
                       });
                 });
         //
-        return loads.toVectors();
+        return stats;
     }
     
     public void requestJVMStats() {

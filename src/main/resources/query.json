@@ -38,6 +38,46 @@
                                     "max": {
                                         "field": "nodes.os.load_average"
                                     }
+                                },
+                                "max_os_mem_total": {
+                                    "max": {
+                                        "field": "nodes.os.mem.total_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_free": {
+                                    "max": {
+                                        "field": "nodes.os.mem.free_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_used": {
+                                    "max": {
+                                        "field": "nodes.os.mem.used_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_fp": {
+                                    "max": {
+                                        "field": "nodes.os.mem.free_percent"
+                                    }
+                                },
+                                "max_os_mem_up": {
+                                    "max": {
+                                        "field": "nodes.os.mem.used_percent"
+                                    }
+                                },
+                                "max_os_swap_total": {
+                                    "max": {
+                                        "field": "nodes.os.swap.total_in_bytes"
+                                    }
+                                },
+                                "max_os_swap_free": {
+                                    "max": {
+                                        "field": "nodes.os.swap.free_in_bytes"
+                                    }
+                                },
+                                "max_os_swap_used": {
+                                    "max": {
+                                        "field": "nodes.os.swap.used_in_bytes"
+                                    }
                                 }
                             }
                         }

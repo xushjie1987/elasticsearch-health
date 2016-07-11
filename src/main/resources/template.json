@@ -73,6 +73,78 @@
                                     "index": "not_analyzed",
                                     "store": true,
                                     "doc_values": true
+                                },
+                                "mem": {
+                                    "type": "object",
+                                    "dynamic": true,
+                                    "enabled": true,
+                                    "include_in_all": false,
+                                    "properties": {
+                                        "total_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "free_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "used_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "free_percent": {
+                                            "type": "double",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "used_percent": {
+                                            "type": "double",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        }
+                                    }
+                                },
+                                "swap": {
+                                    "type": "object",
+                                    "dynamic": true,
+                                    "enabled": true,
+                                    "include_in_all": false,
+                                    "properties": {
+                                        "total_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "free_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        },
+                                        "used_in_bytes": {
+                                            "type": "long",
+                                            "include_in_all": false,
+                                            "index": "not_analyzed",
+                                            "store": true,
+                                            "doc_values": true
+                                        }
+                                    }
                                 }
                             }
                         }

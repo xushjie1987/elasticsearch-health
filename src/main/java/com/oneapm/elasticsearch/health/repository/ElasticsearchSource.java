@@ -26,6 +26,8 @@ import org.slf4j.LoggerFactory;
 import com.oneapm.elasticsearch.health.document.NodeStatsDocument;
 import com.oneapm.elasticsearch.health.document.NodeStatsDocument.Nodes;
 import com.oneapm.elasticsearch.health.document.NodeStatsDocument.OS;
+import com.oneapm.elasticsearch.health.document.NodeStatsDocument.OS.Mem;
+import com.oneapm.elasticsearch.health.document.NodeStatsDocument.OS.Swap;
 
 /**
  * ClassName:ElasticsearchSource <br/>
@@ -110,6 +112,40 @@ public class ElasticsearchSource extends ElasticsearchRepository {
                                                       .getTimestamp());
                                      o.setLoad_average(ns.getOs()
                                                          .getLoadAverage());
+                                     Mem mem = new Mem();
+                                     mem.setTotal_in_bytes(ns.getOs()
+                                                             .getMem()
+                                                             .getTotal()
+                                                             .bytes());
+                                     mem.setFree_in_bytes(ns.getOs()
+                                                            .getMem()
+                                                            .getFree()
+                                                            .bytes());
+                                     mem.setUsed_in_bytes(ns.getOs()
+                                                            .getMem()
+                                                            .getUsed()
+                                                            .bytes());
+                                     mem.setUsed_percent((double) ns.getOs()
+                                                                    .getMem()
+                                                                    .getUsedPercent());
+                                     mem.setFree_percent((double) ns.getOs()
+                                                                    .getMem()
+                                                                    .getFreePercent());
+                                     Swap swap = new Swap();
+                                     swap.setTotal_in_bytes(ns.getOs()
+                                                              .getSwap()
+                                                              .getTotal()
+                                                              .bytes());
+                                     swap.setFree_in_bytes(ns.getOs()
+                                                             .getSwap()
+                                                             .getFree()
+                                                             .bytes());
+                                     swap.setUsed_in_bytes(ns.getOs()
+                                                             .getSwap()
+                                                             .getUsed()
+                                                             .bytes());
+                                     o.setMem(mem);
+                                     o.setSwap(swap);
                                      n.setOs(o);
                                      return n;
                                  })

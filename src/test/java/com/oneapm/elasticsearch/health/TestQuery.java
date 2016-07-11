@@ -11,6 +11,7 @@ package com.oneapm.elasticsearch.health;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -122,6 +123,24 @@ public class TestQuery {
                             });
                       });
                 });
+    }
+    
+    /**
+     * testQuery02: <br/>
+     * 
+     * @author xushjie
+     * @since JDK 1.8
+     */
+    @Test
+    public void testQuery02() {
+        //
+        NodesStatsResponse response = client.admin()
+                                            .cluster()
+                                            .prepareNodesStats()
+                                            .all()
+                                            .get();
+        //
+        System.out.println(response);
     }
     
 }
