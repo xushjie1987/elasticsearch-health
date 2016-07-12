@@ -1,5 +1,5 @@
 {
-    "took": 2,
+    "took": 11,
     "timed_out": false,
     "_shards": {
         "total": 1,
@@ -7,19 +7,19 @@
         "failed": 0
     },
     "hits": {
-        "total": 2,
-        "max_score": 0.0,
+        "total": 10,
+        "max_score": 0,
         "hits": [
         ]
     },
     "aggregations": {
         "nested_nodes": {
-            "doc_count": 2,
+            "doc_count": 10,
             "nodes_time": {
                 "buckets": [
                     {
-                        "key_as_string": "2016-07-10_16:42",
-                        "key": 1468140120000,
+                        "key_as_string": "2016-07-12_23:10",
+                        "key": 1468336200000,
                         "doc_count": 1,
                         "nodes_terms": {
                             "doc_count_error_upper_bound": 0,
@@ -29,15 +29,39 @@
                                     "key": "node-1",
                                     "doc_count": 1,
                                     "max_os_load": {
-                                        "value": 7.56
+                                        "value": 1.33
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50976698368
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16411033600
                                     }
                                 }
                             ]
                         }
                     },
                     {
-                        "key_as_string": "2016-07-10_16:43",
-                        "key": 1468140180000,
+                        "key_as_string": "2016-07-12_23:11",
+                        "key": 1468336260000,
                         "doc_count": 1,
                         "nodes_terms": {
                             "doc_count_error_upper_bound": 0,
@@ -47,7 +71,367 @@
                                     "key": "node-1",
                                     "doc_count": 1,
                                     "max_os_load": {
-                                        "value": 3.86
+                                        "value": 1.32
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50976845824
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16410886144
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:12",
+                        "key": 1468336320000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 2.17
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50978508800
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16409223168
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:13",
+                        "key": 1468336380000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 1.53
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50980360192
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16407371776
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:14",
+                        "key": 1468336440000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 1.18
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50980765696
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16406966272
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:15",
+                        "key": 1468336500000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 2.11
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50980724736
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16407007232
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:16",
+                        "key": 1468336560000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 2.34
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50981277696
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16406454272
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:17",
+                        "key": 1468336620000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 1.9
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50980868096
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16406863872
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:18",
+                        "key": 1468336680000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 0.7
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50981556224
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16406175744
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "key_as_string": "2016-07-12_23:19",
+                        "key": 1468336740000,
+                        "doc_count": 1,
+                        "nodes_terms": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "node-1",
+                                    "doc_count": 1,
+                                    "max_os_load": {
+                                        "value": 0.9
+                                    },
+                                    "max_os_swap_total": {
+                                        "value": 0
+                                    },
+                                    "max_os_swap_free": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_up": {
+                                        "value": 76
+                                    },
+                                    "max_os_swap_used": {
+                                        "value": 0
+                                    },
+                                    "max_os_mem_total": {
+                                        "value": 67387731968
+                                    },
+                                    "max_os_mem_used": {
+                                        "value": 50980773888
+                                    },
+                                    "max_os_mem_fp": {
+                                        "value": 24
+                                    },
+                                    "max_os_mem_free": {
+                                        "value": 16406958080
                                     }
                                 }
                             ]

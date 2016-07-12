@@ -8,7 +8,7 @@
             "query": {
                 "range": {
                     "nodes.timestamp": {
-                        "gte": "now-2m",
+                        "gte": "now-10m",
                         "lte": "now"
                     }
                 }

@@ -227,8 +227,8 @@ public class ElasticsearchStorage extends ElasticsearchRepository {
      * @return
      * @since JDK 1.8
      */
-    public Object[][] requestOSStats(String gte,
-                                     String lte) {
+    public Object[][][] requestOSStats(String gte,
+                                       String lte) {
         return requestOSStats(gte,
                               lte,
                               DateHistogramInterval.MINUTE);

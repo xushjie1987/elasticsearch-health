@@ -6,7 +6,7 @@
             "query": {
                 "range": {
                     "nodes.timestamp": {
-                        "from": "now-2m",
+                        "from": "now-10m",
                         "to": "now",
                         "include_lower": true,
                         "include_upper": true
@@ -28,7 +28,7 @@
                         "field": "nodes.timestamp",
                         "interval": "1m",
                         "time_zone": "+08:00",
-                        "format": "yyyy-MM-dd_HH:mm"
+                        "format": "HH:mm_yyyy-MM-dd"
                     },
                     "aggregations": {
                         "nodes_terms": {
@@ -39,6 +39,46 @@
                                 "max_os_load": {
                                     "max": {
                                         "field": "nodes.os.load_average"
+                                    }
+                                },
+                                "max_os_mem_total": {
+                                    "max": {
+                                        "field": "nodes.os.mem.total_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_free": {
+                                    "max": {
+                                        "field": "nodes.os.mem.free_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_used": {
+                                    "max": {
+                                        "field": "nodes.os.mem.used_in_bytes"
+                                    }
+                                },
+                                "max_os_mem_fp": {
+                                    "max": {
+                                        "field": "nodes.os.mem.free_percent"
+                                    }
+                                },
+                                "max_os_mem_up": {
+                                    "max": {
+                                        "field": "nodes.os.mem.used_percent"
+                                    }
+                                },
+                                "max_os_swap_total": {
+                                    "max": {
+                                        "field": "nodes.os.swap.total_in_bytes"
+                                    }
+                                },
+                                "max_os_swap_free": {
+                                    "max": {
+                                        "field": "nodes.os.swap.free_in_bytes"
+                                    }
+                                },
+                                "max_os_swap_used": {
+                                    "max": {
+                                        "field": "nodes.os.swap.used_in_bytes"
                                     }
                                 }
                             }
